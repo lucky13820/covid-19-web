@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ryan Yao Design</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
+    />
+    <link
+      rel="preload"
+      href="https://d33wubrfki0l68.cloudfront.net/678ab0f61e2d23f61216da817eb72c3e160abcbd/0c605/src/assets/fonts/rubik-light-kern-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://d33wubrfki0l68.cloudfront.net/023d86f9b4b58208ceb05012a12c8180f58e1b26/04ae8/src/assets/fonts/texta-heavy-kern-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="${require(`./assets/image/favicon-32x32.png`)}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="${require(`./assets/image/favicon-16x16.png`)}"
+    />
+    <link
+      rel="mask-icon"
+      href="${require(`./assets/image/safari-pinned-tab.svg`)}"
+      color="#1e2022"
+    />
+    <link rel="shortcut icon" href="${require(`./assets/image/favicon.ico`)}" />
+    <link
+      rel="shortcut icon"
+      type="image/svg+xml"
+      href="${require(`./assets/image/favicon.svg`)}"
+    />
+    <meta name="msapplication-TileColor" content="#1e2022" />
+    <meta
+      name="msapplication-config"
+      content="${require(`./assets/image/browserconfig.xml`)}"
+    />
+    <meta name="theme-color" content="#1e2022" />
+    <meta
+      name="thumbnail"
+      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+    />
+    <meta
+      name="description"
+      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+    />
+    <meta property="og:title" content="Ryan Yao Design" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+    />
+    <meta name="twitter:site" content="@ryanyaodesign" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ryan Yao Design" />
+    <meta
+      name="twitter:description"
+      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+    />
+    <style type="text/css">
+      @font-face {
+        font-family: "Rubik Light";
+        src: url("${require(`./assets/fonts/rubik-light-kern-latin.woff2`)}")
+            format("woff2"),
+          url("${require(`./assets/fonts/rubik-light-kern-latin.woff`)}")
+            format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Texta Heavy";
+        src: url("${require(`./assets/fonts/texta-heavy-kern-latin.woff2`)}")
+            format("woff2"),
+          url("${require(`./assets/fonts/texta-heavy-kern-latin.woff`)}")
+            format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+  </head>
+
+  <body class="bg-black text-gray-300">
+    <header class="theme-switch-wrapper">
+      <label class="theme-switch" for="themeSwitch">
+        <input type="checkbox" id="themeSwitch" />
+        <div class="switcher"></div>
+        <div class="light-sun"></div>
+      </label>
+    </header>
+    <main id="root" class="c-container home">
+      <div class="titleAnimation relative">
+        <h1>COVID-19 Updates</h1>
+      </div>
+      <section class="work-list">
+        <p id="updated"></p>
+        <ul class="">
+          <li>
+            <h3>Total Cases</h3>
+            <h2 id="totalCases"></h2>
+            <h3 id="casesPer"></h3>
+            <span id="casesNum"></span>
+          </li>
+          <li>
+            <h3>Total Deaths</h3>
+            <h2 id="totalDeaths"></h2>
+            <h3 id="deathPer"></h3>
+            <span id="deathNum"></span>
+          </li>
+          <li>
+            <h3>Total Recoveries</h3>
+            <h2 id="totalRecover"></h2>
+            <h3 id="recoverPer"></h3>
+            <span id="recoverNum"></span>
+          </li>
+          <li>
+            <h3>Active Cases</h3>
+            <h2 id="totalActive"></h2>
+            <h3 id="activePer"></h3>
+            <span id="activeNum"></span>
+          </li>
+        </ul>
+        <table id="breakdown" class="display">
+          <thead>
+            <tr>
+              <th>Flag</th>
+              <th>Country</th>
+              <th>Cases</th>
+              <th>Deaths</th>
+              <th>Recovered</th>
+              <th>Active</th>
+              <th>Critical</th>
+              <th>Today Cases</th>
+              <th>Today Deaths</th>
+              <th>Cases per 1M</th>
+              <th>Deaths per 1m</th>
+            </tr>
+          </thead>
+        </table>
+        <canvas id="caseChart" width="400" height="400"></canvas>
+        <canvas id="deathChart" width="400" height="400"></canvas>
+        <canvas id="recoverChart" width="400" height="400"></canvas>
+      </section>
+      <footer>
+        <h5
+          class="text-sm font-body text-gray-300 text-center w-full py-12 m-0"
+        >
+          ©2020 Designed and Developed by Ryan Yao with
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            class="text-sm under-line"
+            >Tailwind CSS</a
+          >
+        </h5>
+      </footer>
+    </main>
+  </body>
+</html>

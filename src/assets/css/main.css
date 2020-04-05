@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*! purgecss start ignore */
+body {
+	@apply text-black;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+	scroll-behavior: smooth;
+}
+
+body::after {
+	content: "";
+	position: fixed;
+	user-select: none;
+	pointer-events: none;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: 999;
+	border: white solid 6px;
+	border-bottom-width: 0;
+}
+
+body.bg-white::after {
+	border: #161819 solid 8px;
+	border-bottom-width: 0;
+	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.bg-white .image-container, body.bg-white .quote-container  {
+	@apply bg-gray-100;
+}
+
+body.bg-white blockquote{
+  @apply text-gray-500;
+}
+
+body.bg-white .theme-switch input,
+body.bg-white .switcher,
+body.bg-white .switcher::before {
+	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.bg-white .logo {
+	fill: #1e2022;
+}
+
+body.bg-white figcaption,
+body.bg-white .text-gray-300 {
+	@apply text-gray-500;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	@apply font-display;
+	letter-spacing: 0.6px;
+}
+
+p,
+a,
+blockquote {
+	@apply font-body;
+	line-height: 2.1rem;
+	font-size: 1.2rem;
+	letter-spacing: 0.1px;
+}
+
+.theme-switch-wrapper {
+	position: fixed;
+	right: 60px;
+	top: 10px;
+	z-index: 9999;
+}
+
+.theme-switch input {
+	display: none;
+	z-index: 9999;
+	position: absolute;
+	width: 56px;
+	height: 56px;
+}
+
+.switcher {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px;
+	height: 44px;
+	z-index: 1000;
+	opacity: 1;
+}
+
+.switcher:after {
+	background-image: url(../image/Moon.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	content: "";
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	position: absolute;
+	transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.switcher:before {
+	background-image: url(../image/Sun.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	content: "";
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	position: absolute;
+	transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.bg-white .switcher:before {
+	opacity: 0;
+}
+
+body.bg-black .switcher:before {
+	opacity: 1;
+}
+
+body.bg-white .switcher:after {
+	opacity: 1;
+}
+
+body.bg-black .switcher:after {
+	opacity: 0;
+}
+
+/*! purgecss end ignore */
+
