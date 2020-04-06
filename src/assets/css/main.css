@@ -155,6 +155,12 @@ blockquote {
   .DTFC_LeftBodyWrapper{
     box-shadow: 1px 0px 6px rgba(4, 19, 43, 0.15), 4px 0px 8px rgba(4, 19, 43, 0.25);
   }
+
+  footer{
+    a{
+      @apply text-gray-300;
+    }
+  }
 }
 
 .increase, .increaseGreen, .decrease, .same{

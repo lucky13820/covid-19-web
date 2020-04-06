@@ -19,7 +19,7 @@ $(document).ready(function() {
       "targets" : 0 ,
       "data": "countryInfo.flag",
       "render" : function ( data, display, full) {
-      return '<img height="75%" width="75%" src="'+ data +'"/>';
+      return '<img src="'+ data +'"/>';
       }
     } ],
     columns: [
@@ -64,19 +64,6 @@ $(document).ready(function() {
     document.documentElement.classList.remove('mode-dark');
     localStorage.setItem("mode", "light");
     $("#themeSwitch").prop("checked", false);
-  }
-
-  function checkDarkMode() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return true;
-    }
-    return false;
-  }
-  
-  if (checkDarkMode()) {
-    document.documentElement.classList.add('mode-dark');
-  } else {
-    document.documentElement.classList.remove('mode-dark');
   }
 
   function initTheme() {
