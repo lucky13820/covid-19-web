@@ -153,12 +153,9 @@ function getYestData(covidStatus) {
 
     if (request.status >= 200 && request.status < 400) {
 
-      covidStatus.casesLabel = []
-      covidStatus.casesData = []
-      covidStatus.deathLabel = []
-      covidStatus.deathData = []
-      covidStatus.recoverLabel = []
-      covidStatus.recoverData = []
+      covidStatus.casesData = [];
+      covidStatus.deathData = [];
+      covidStatus.recoverData = [];
 
       Object.keys(data.cases).forEach(function (key) {
         var value = data.cases[key];
@@ -187,6 +184,14 @@ function getYestData(covidStatus) {
       covidStatus.recoverLabel = [];
       for (var k in data.cases) covidStatus.recoverLabel.push(k);
       
+      var casesNum = ""
+      var deathNum = ""
+      var recoverNum = ""
+      var activeNum = ""
+      var casesPer = ""
+      var deathPer = ""
+      var recoverPer = ""
+      var activePer = ""
       casesNum = covidStatus.totalCases - data.cases[ Object.keys(data.cases).pop() ]
       deathNum = covidStatus.totalDeaths - data.deaths[ Object.keys(data.deaths).pop() ]
       recoverNum = covidStatus.totalRecover - data.recovered[ Object.keys(data.recovered).pop() ]
