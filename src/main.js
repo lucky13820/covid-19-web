@@ -20,33 +20,35 @@ $(document).ready(function() {
       "data": "countryInfo.flag",
       "render" : function ( data, display, full) {
       return '<img src="'+ data +'"/>';
-      }
+      },
     } ],
     columns: [
       {data: 'countryInfo.flag'},
       {data: 'country'},
-      {data: 'cases'},
-      {data: 'deaths'},
-      {data: 'recovered'},
-      {data: 'active'},
-      {data: 'critical'},
-      {data: 'todayCases'},
-      {data: 'todayDeaths'},
-      {data: 'casesPerOneMillion'},
-      {data: 'deathsPerOneMillion'},
+      {data: 'cases',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'deaths',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'recovered',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'active',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'critical',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'todayCases',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'todayDeaths',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'casesPerOneMillion',render: $.fn.dataTable.render.number( ',', '.')},
+      {data: 'deathsPerOneMillion',render: $.fn.dataTable.render.number( ',', '.')},
     ],
     "scrollX": true,
     "scrollY": true,
     "orderClasses": true,
     "order": [2, 'desc'],
     language: {
-      searchPlaceholder: "Search for countries"
+      searchPlaceholder: "Search for countries",
+      thousands: ","
     },
     fixedColumns: true,
     fixedColumns: {
       leftColumns: 2
     },
   } );
+
   var l = $('#breakdown_filter label');
   l.html(l.find('input'));
 
@@ -129,10 +131,10 @@ function getAllData() {
       covidStatus.totalRecover = data.recovered
       covidStatus.totalActive = data.active
       covidStatus.updated = new Date(data.updated)
-      document.getElementById('totalCases').textContent = covidStatus.totalCases
-      document.getElementById('totalDeaths').textContent = covidStatus.totalDeaths
-      document.getElementById('totalRecover').textContent = covidStatus.totalRecover
-      document.getElementById('totalActive').textContent = covidStatus.totalActive
+      document.getElementById('totalCases').textContent = covidStatus.totalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      document.getElementById('totalDeaths').textContent = covidStatus.totalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      document.getElementById('totalRecover').textContent = covidStatus.totalRecover.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      document.getElementById('totalActive').textContent = covidStatus.totalActive.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       document.getElementById('updated').textContent = "Updated at " + covidStatus.updated
     } else {
       console.log('error')
@@ -195,35 +197,35 @@ function getYestData(covidStatus) {
       activePer = ((activeNum * 100) / (data.cases[ Object.keys(data.cases).reverse().slice(1,2).pop() ] - data.recovered[ Object.keys(data.recovered).reverse().slice(1,2).pop() ]) ).toFixed(1)
 
       if (casesNum > 0){
-        document.getElementById('casesNum').textContent = "from yesterday (+" + casesNum + ")"
+        document.getElementById('casesNum').textContent = "from yesterday (+" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else if (casesNum == 0){
-        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum + ")"
+        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else{
-        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum + ")"
+        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }
 
       if (deathNum > 0){
-        document.getElementById('deathNum').textContent = "from yesterday (+" + deathNum + ")"
+        document.getElementById('deathNum').textContent = "from yesterday (+" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else if (deathNum == 0){
-        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum + ")"
+        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else{
-        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum + ")"
+        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }
 
       if (recoverNum > 0){
-        document.getElementById('recoverNum').textContent = "from yesterday (+" + recoverNum + ")"
+        document.getElementById('recoverNum').textContent = "from yesterday (+" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else if (recoverNum == 0){
-        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum + ")"
+        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else{
-        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum + ")"
+        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }
 
       if (activeNum > 0){
-        document.getElementById('activeNum').textContent = "from yesterday (+" + activeNum + ")"
+        document.getElementById('activeNum').textContent = "from yesterday (+" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else if (activeNum == 0){
-        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum + ")"
+        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }else{
-        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum + ")"
+        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
       }
 
       if (casesPer > 0){
