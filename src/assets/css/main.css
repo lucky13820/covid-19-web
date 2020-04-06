@@ -5,7 +5,6 @@
 
 /*! purgecss start ignore */
 body {
-	@apply text-black;
 	min-height: 100%;
 	height: 100%;
 	width: 100%;
@@ -15,54 +14,11 @@ body {
 	scroll-behavior: smooth;
 }
 
-body::after {
-	content: "";
-	position: fixed;
-	user-select: none;
-	pointer-events: none;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
-	z-index: 999;
-	border: white solid 6px;
-	border-bottom-width: 0;
-}
-
-body.bg-white::after {
-	border: #161819 solid 8px;
-	border-bottom-width: 0;
-	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-body.bg-white .image-container, body.bg-white .quote-container  {
-	@apply bg-gray-100;
-}
-
-body.bg-white blockquote{
-  @apply text-gray-500;
-}
-
-body.bg-white .theme-switch input,
-body.bg-white .switcher,
-body.bg-white .switcher::before {
-	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-body.bg-white .logo {
-	fill: #1e2022;
-}
-
-body.bg-white figcaption,
-body.bg-white .text-gray-300 {
-	@apply text-gray-500;
-}
-
 h1,
 h2,
 h3,
 h4 {
-	@apply font-display;
+  @apply font-display;
 	letter-spacing: 0.6px;
 }
 
@@ -76,9 +32,9 @@ blockquote {
 }
 
 .theme-switch-wrapper {
-	position: fixed;
-	right: 60px;
-	top: 10px;
+	position: absolute;
+	right: 40px;
+	top: -80px;
 	z-index: 9999;
 }
 
@@ -112,7 +68,8 @@ blockquote {
 	top: 0;
 	right: 0;
 	position: absolute;
-	transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 0;
 }
 
 .switcher:before {
@@ -125,24 +82,319 @@ blockquote {
 	top: 0;
 	right: 0;
 	position: absolute;
-	transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 1;
 }
 
-body.bg-white .switcher:before {
-	opacity: 0;
+.mode-dark {
+  .switcher:before {
+    opacity: 0;
+  }
+  .switcher:after {
+    opacity: 1;
+  }
+  tbody .even{
+    @apply bg-gray-800;
+  }
+  
+  tbody .odd{
+    @apply bg-gray-900;
+  }
+  
+  thead{
+    @apply bg-gray-700;
+  }
+
+  thead th{
+    @apply text-gray-400;
+
+    &.sorting{
+      background-image: url(../image/sorting_dark.svg);
+    }
+    &.sorting_asc{
+      background-image: url(../image/sorting_asc_dark.svg);
+    }
+    &.sorting_desc{
+      background-image: url(../image/sorting_desc_dark.svg);
+    }
+  }
+
+  .dataTables_wrapper{
+    @apply text-gray-200;
+  }
+
+  #breakdown_length{
+    label{
+      @apply text-gray-400;
+    }
+    select{
+      @apply text-gray-400;
+      @apply border-gray-600;
+      @apply bg-gray-800;
+    }
+  }
+
+  #breakdown_filter{
+    input{
+      @apply border-gray-600;
+      @apply bg-gray-800;
+      &::placeholder {
+        @apply text-gray-300;
+      }
+    }
+  }
+
+  #breakdown_info{
+    @apply text-gray-400;
+  }
+
+  #breakdown_paginate{
+    @apply text-gray-400;
+  }
+
+  .DTFC_LeftBodyWrapper{
+    box-shadow: 1px 0px 6px rgba(4, 19, 43, 0.15), 4px 0px 8px rgba(4, 19, 43, 0.25);
+  }
 }
 
-body.bg-black .switcher:before {
-	opacity: 1;
+.increase, .increaseGreen, .decrease, .same{
+  background-repeat: no-repeat;
+  background-position: left;
+  position: relative;
+  z-index: 1;
+  padding-left: 32px;
 }
 
-body.bg-white .switcher:after {
-	opacity: 1;
+.increase{
+  background-image: url(../image/increase.svg);
 }
 
-body.bg-black .switcher:after {
-	opacity: 0;
+.increaseGreen{
+  background-image: url(../image/increase-green.svg);
 }
 
+.decrease{
+  background-image: url(../image/decrease.svg);
+}
+
+.same{
+  background-image: url(../image/same.svg);
+}
+
+
+
+.dataTables_wrapper{
+  @apply font-body;
+}
+
+table{
+  @apply text-lg;
+}
+
+tbody tr td{
+  @apply py-6;
+  @apply px-2;
+  @apply text-right;
+  padding-right: 24px;
+
+  &:nth-of-type(2){
+    @apply font-display;
+    @apply text-left;
+    @apply leading-tight;
+  }
+
+  img{
+    width: 24px;
+    float: right;
+  }
+}
+
+tbody .even{
+  @apply bg-gray-100;
+}
+
+tbody .odd{
+  @apply bg-white;
+}
+
+thead{
+  @apply bg-gray-200;
+}
+
+thead th{
+  @apply text-right;
+  @apply leading-tight;
+  @apply text-gray-700;
+  @apply p-2;
+  &:nth-of-type(1){
+    @apply opacity-0;
+  }
+  &:nth-of-type(2){
+    @apply text-left;
+  }
+  &.sorting, &.sorting_asc, &.sorting_desc{
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center right;
+    padding-right: 26px;
+  }
+  &.sorting{
+    background-image: url(../image/sorting.svg);
+  }
+  &.sorting_asc{
+    background-image: url(../image/sorting_asc.svg);
+  }
+  &.sorting_desc{
+    background-image: url(../image/sorting_desc.svg);
+  }
+}
+
+
+
+
+#breakdown_length{
+  @apply inline-block;
+  label{
+    @apply text-gray-700;
+  }
+  select{
+    @apply text-gray-700;
+    @apply border-gray-400;
+    @apply border-2;
+    @apply bg-white;
+    @apply py-2;
+    @apply pl-4;
+    @apply pr-8;
+    @apply rounded-lg;
+    appearance: none;
+    background-image: url('../image/down.svg');
+    background-repeat: no-repeat;
+    /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+    background-position: right .9em top 50%;
+    /* icon size, then gradient */
+    background-size: .65em auto;
+  }
+}
+
+
+#breakdown_filter{
+  @apply inline-block;
+  @apply float-none;
+  @apply w-full;
+  margin-top: 8px;
+
+  input{
+    @apply border-gray-400;
+    @apply border-2;
+    @apply bg-white;
+    @apply p-2;
+    @apply rounded-lg;
+    @apply w-full;
+
+    background: url(../image/search1.svg) no-repeat scroll 6px 10px;
+    padding-left: 30px;
+
+    &::placeholder {
+      @apply text-gray-700;
+    }
+  }
+}
+
+
+#breakdown_info{
+  @apply inline-block;
+  @apply text-gray-700;
+  margin-top: 8px;
+}
+
+#breakdown_paginate{
+  @apply inline-block;
+  @apply float-right;
+  @apply text-gray-700;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+
+  a{
+    cursor: pointer;
+  }
+
+  span a{
+    @apply mx-2;
+    width: 40px;
+    @apply inline-block;
+    @apply text-center;
+
+    &.current{
+      @apply rounded-full;
+      @apply bg-gray-600;
+      @apply text-gray-200;
+    }
+  }
+}
+
+.paginate_button{
+  &.next, &.previous{
+    @apply bg-gray-300;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    text-indent: -9999px;
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  &.next{
+    background-image: url(../image/next.svg), linear-gradient(to bottom, #e2e8f0 0%,#e2e8f0 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: center, center;
+  }
+  
+  &.previous{
+    background: url(../image/previous.svg), linear-gradient(to bottom, #e2e8f0 0%,#e2e8f0 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: center, center;
+  }
+}
+
+.dataTables_scroll{
+  margin-bottom: 16px;
+  @apply shadow-xl;
+}
+
+.DTFC_LeftBodyWrapper{
+  box-shadow: 1px 0px 4px rgba(6, 32, 71, 0.05), 4px 0px 8px rgba(6, 32, 71, 0.08);
+}
+
+.DTFC_ScrollWrapper{
+  margin-top: 16px;
+}
+
+#caseChart, #deathChart, #recoverChart{
+  width: 100%;
+  height: 600px;
+}
+
+@screen md{
+  #breakdown_filter{
+    float: right;
+    margin-top: 0;
+    width: 250px;
+  }
+
+  #breakdown_info{
+    margin-bottom: 16px;
+  }
+
+  #breakdown_paginate{
+    margin-top: 16px;
+  }
+  .theme-switch-wrapper{
+    right: 40px;
+	  top: 8px;
+  }
+}
 /*! purgecss end ignore */
 

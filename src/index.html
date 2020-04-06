@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Ryan Yao Design</title>
+    <title>COVID-19 Update (Live)</title>
     <meta charset="UTF-8" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="pragma" content="no-cache" />
@@ -39,7 +39,7 @@
     <link
       rel="mask-icon"
       href="${require(`./assets/image/safari-pinned-tab.svg`)}"
-      color="#1e2022"
+      color="#4299e1"b
     />
     <link rel="shortcut icon" href="${require(`./assets/image/favicon.ico`)}" />
     <link
@@ -47,47 +47,45 @@
       type="image/svg+xml"
       href="${require(`./assets/image/favicon.svg`)}"
     />
-    <meta name="msapplication-TileColor" content="#1e2022" />
     <meta
       name="msapplication-config"
       content="${require(`./assets/image/browserconfig.xml`)}"
     />
-    <meta name="theme-color" content="#1e2022" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
     <meta
       name="thumbnail"
-      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+      content="{require(`./assets/image/featured.jpg`)}"
     />
     <meta
       name="description"
-      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+      content="Track the current status of COVID-19 around the global"
     />
-    <meta property="og:title" content="Ryan Yao Design" />
+    <meta property="og:title" content="COVID-19 Update (Live)" />
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+      content="{require(`./assets/image/featured.jpg`)}"
     />
     <meta
       property="og:description"
-      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+      content="Track the current status of COVID-19 around the global"
     />
     <meta
       name="twitter:image:src"
-      content="https://res.cloudinary.com/doms4gu6e/image/upload/v1584403884/ryanyao-design_rv1jfh.jpg"
+      content="{require(`./assets/image/featured.jpg`)}"
     />
-    <meta name="twitter:site" content="@ryanyaodesign" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ryan Yao Design" />
+    <meta name="twitter:title" content="COVID-19 Update (Live)" />
     <meta
       name="twitter:description"
-      content="Portfolio site for Ryan Yao. He is product designer. His focus is on UX/UI design, product design, business design, HTML/CSS."
+      content="Track the current status of COVID-19 around the global"
     />
     <style type="text/css">
       @font-face {
-        font-family: "Rubik Light";
-        src: url("${require(`./assets/fonts/rubik-light-kern-latin.woff2`)}")
+        font-family: "Texta Black";
+        src: url("${require(`./assets/fonts/Texta-Black.woff2`)}")
             format("woff2"),
-          url("${require(`./assets/fonts/rubik-light-kern-latin.woff`)}")
+          url("${require(`./assets/fonts/Texta-Black.woff`)}")
             format("woff");
         font-weight: normal;
         font-style: normal;
@@ -95,10 +93,10 @@
       }
 
       @font-face {
-        font-family: "Texta Heavy";
-        src: url("${require(`./assets/fonts/texta-heavy-kern-latin.woff2`)}")
+        font-family: "Texta Regular";
+        src: url("${require(`./assets/fonts/Texta-Regular.woff2`)}")
             format("woff2"),
-          url("${require(`./assets/fonts/texta-heavy-kern-latin.woff`)}")
+          url("${require(`./assets/fonts/Texta-Regular.woff`)}")
             format("woff");
         font-weight: normal;
         font-style: normal;
@@ -107,79 +105,116 @@
     </style>
   </head>
 
-  <body class="bg-black text-gray-300">
-    <header class="theme-switch-wrapper">
-      <label class="theme-switch" for="themeSwitch">
-        <input type="checkbox" id="themeSwitch" />
-        <div class="switcher"></div>
-        <div class="light-sun"></div>
-      </label>
-    </header>
+  <body class="pt-32 bg-white dark:bg-gray-900">
     <main id="root" class="c-container home">
-      <div class="titleAnimation relative">
-        <h1>COVID-19 Updates</h1>
-      </div>
-      <section class="work-list">
-        <p id="updated"></p>
-        <ul class="">
-          <li>
-            <h3>Total Cases</h3>
-            <h2 id="totalCases"></h2>
-            <h3 id="casesPer"></h3>
-            <span id="casesNum"></span>
+      <header class="relative">
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="themeSwitch">
+            <input type="checkbox" id="themeSwitch" />
+            <div class="switcher"></div>
+            <div class="light-sun"></div>
+          </label>
+        </div>
+        <div class="titleAnimation relative">
+          <h1 class="text-4xl leading-none text-gray-900 dark:text-gray-100">COVID-19 Updates</h1>
+          <p id="updated" class="text-gray-700 dark:text-gray-400 text-sm leading-tight md:text-base"></p>
+        </div>
+      </header>
+      <section class="all-status mt-12">
+        <ul class="grid md:grid-cols-2 gap-10 grid-cols-1">
+          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+            <div>
+              <span class="text-base text-gray-700 dark:text-gray-400">Total Cases</span>
+              <h2 id="totalCases" class="text-orange-500 text-4xl leading-none mt-2 "></h2>
+            </div>
+            <div class="pt-5">
+              <div class="relative md:text-right text-left md:block inline-block">
+                <p id="casesPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+              </div>
+              <p id="casesNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
+            </div>
           </li>
-          <li>
-            <h3>Total Deaths</h3>
-            <h2 id="totalDeaths"></h2>
-            <h3 id="deathPer"></h3>
-            <span id="deathNum"></span>
+          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+            <div>
+              <span class="text-base text-gray-700 dark:text-gray-400">Total Deaths</span>
+              <h2 id="totalDeaths" class="text-gray-600 text-4xl leading-none mt-2"></h2>
+            </div> 
+            <div class="pt-5">
+              <div class="relative md:text-right text-left md:block inline-block">
+                <p id="deathPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+              </div>
+              <p id="deathNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
+            </div>
           </li>
-          <li>
-            <h3>Total Recoveries</h3>
-            <h2 id="totalRecover"></h2>
-            <h3 id="recoverPer"></h3>
-            <span id="recoverNum"></span>
+          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+            <div>
+              <span class="text-base text-gray-700 dark:text-gray-400">Total Recoveries</span>
+              <h2 id="totalRecover" class="text-green-600 text-4xl leading-none mt-2 dark:text-green-500"></h2>
+            </div>
+            <div class="pt-5">
+              <div class="relative md:text-right text-left md:block inline-block">
+                <p id="recoverPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+              </div>
+              <p id="recoverNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
+            </div>
           </li>
-          <li>
-            <h3>Active Cases</h3>
-            <h2 id="totalActive"></h2>
-            <h3 id="activePer"></h3>
-            <span id="activeNum"></span>
+          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+            <div>
+              <span class="text-base text-gray-700 dark:text-gray-400">Active Cases</span>
+              <h2 id="totalActive" class="text-indigo-600 text-4xl leading-none mt-2 dark:text-indigo-500"></h2>
+            </div>
+            <div class="pt-5">
+              <div class="relative md:text-right text-left md:block inline-block">
+                <p id="activePer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+              </div>
+              <p id="activeNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
+            </div>
           </li>
         </ul>
-        <table id="breakdown" class="display">
-          <thead>
-            <tr>
-              <th>Flag</th>
-              <th>Country</th>
-              <th>Cases</th>
-              <th>Deaths</th>
-              <th>Recovered</th>
-              <th>Active</th>
-              <th>Critical</th>
-              <th>Today Cases</th>
-              <th>Today Deaths</th>
-              <th>Cases per 1M</th>
-              <th>Deaths per 1m</th>
-            </tr>
-          </thead>
-        </table>
-        <canvas id="caseChart" width="400" height="400"></canvas>
-        <canvas id="deathChart" width="400" height="400"></canvas>
-        <canvas id="recoverChart" width="400" height="400"></canvas>
       </section>
+        <section class="breakdown-table mt-32">
+          <h2 class="text-3xl mb-8 dark:text-gray-100">Breakdown</h2>
+          <table id="breakdown" class="display">
+            <thead class="p-6">
+              <tr>
+                <th>Flag</th>
+                <th>Country</th>
+                <th>Cases</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+                <th>Active</th>
+                <th>Critical</th>
+                <th>Today Cases</th>
+                <th>Today Deaths</th>
+                <th>Cases per 1M</th>
+                <th>Deaths per 1m</th>
+              </tr>
+            </thead>
+          </table>
+        </section>
+        <section class="chart mt-32">
+          <h2 class="text-3xl mb-8 dark:text-gray-100">Graphs</h2>
+          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
+            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Cases</h3>
+            <canvas id="caseChart"></canvas>
+          </div>
+          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
+            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Deaths</h3>
+            <canvas id="deathChart"></canvas>
+          </div>
+          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
+            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Recoveries</h3>
+            <canvas id="recoverChart"></canvas>
+          </div>
+        </section>
       <footer>
-        <h5
-          class="text-sm font-body text-gray-300 text-center w-full py-12 m-0"
-        >
-          ©2020 Designed and Developed by Ryan Yao with
-          <a
-            href="https://tailwindcss.com"
-            target="_blank"
-            class="text-sm under-line"
-            >Tailwind CSS</a
-          >
-        </h5>
+        <a href="https://ryanyao.design" target="_blank" class="text-base text-gray-300 text-left w-full py-12 m-0 hover:text-gray-500 mr-10">
+          Made by Ryan Yao
+        </a>
+        <a href="https://github.com/NovelCOVID/API" target="_blank" class="text-base text-gray-300 text-left w-full py-12 m-0 hover:text-gray-500">
+          Data Source
+        </a>
+        
       </footer>
     </main>
   </body>

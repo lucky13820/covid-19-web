@@ -1,29 +1,8 @@
 module.exports = {
     theme: {
-        colors: {
-            orange: {
-                100: '#FDF0EA',
-                500: '#EA6D30',
-                700: '#C05621'
-            },
-            pink: {
-                100: '#FEEFF2',
-                300: '#F9CBD5',
-                500: '#F06381'
-            },
-            gray: {
-                100: '#F6F6F7',
-                200: '#dcdddd',
-                300: '#E1E4E9',
-                500: '#828282',
-                700: '#1D1E1F',
-            },
-            white: '#f1f1f1',
-            black: '#1e2022',
-        },
         fontFamily: {
-            'display': ['Texta Heavy', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto,tahoma', 'Verdana,arial', "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", 'STXihei', "华文细黑", "Microsoft Yahei", "微软雅黑", 'sans-serif'],
-            'body': ['Rubik Light', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto,tahoma', 'Verdana,arial', "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", 'STXihei', "华文细黑", "Microsoft Yahei", "微软雅黑", 'sans-serif'],
+            'display': ['Texta Black', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto,tahoma', 'Verdana,arial', "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", 'STXihei', "华文细黑", "Microsoft Yahei", "微软雅黑", 'sans-serif'],
+            'body': ['Texta Regular', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto,tahoma', 'Verdana,arial', "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", 'STXihei', "华文细黑", "Microsoft Yahei", "微软雅黑", 'sans-serif'],
         },
         fontSize: {
             'xs': '.75rem',
@@ -40,7 +19,7 @@ module.exports = {
             'default': '0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06)',
             'md': ' 0px 1px 3px rgba(9, 41, 120, 0.13), 0px 4px 8px rgba(0, 0, 0, 0.13)',
             'lg': ' 0px 3px 6px rgba(9, 41, 120, 0.13), 0px 8px 16px rgba(0, 0, 0, 0.13)',
-            'xl': ' 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04)'
+            'xl': ' 0px 1px 8px rgba(4, 28, 51, 0.02), 0px 5px 15px rgba(4, 28, 51, 0.03), 0px 15px 30px rgba(4, 28, 51, 0.04)'
         },
         letterSpacing: {
             wide: '.015em',
@@ -65,10 +44,13 @@ module.exports = {
             "xl": '380px',
             "64": "320px",
         },
+        darkSelector: '.mode-dark'
     },
-
     variants: { // for the utilities
         fluidContainer: ['responsive'], // defaults to ['responsive']
+        backgroundColor: ['dark', 'dark-hover', 'dark-group-hover', 'dark-even', 'dark-odd'],
+        borderColor: ['dark', 'dark-focus', 'dark-focus-within'],
+        textColor: ['dark', 'dark-hover', 'dark-active']
     },
     plugins: [
         require('tailwindcss-fluid-container')({
@@ -78,5 +60,6 @@ module.exports = {
             marginUtilities: true, // defaults to true
             negativeMarginUtilities: true, // defaults to true
         }),
+        require('tailwindcss-dark-mode')()
     ],
 }
