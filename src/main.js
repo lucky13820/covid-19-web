@@ -7,7 +7,6 @@ import 'datatables.net-fixedcolumns-dt';
 
 $(document).ready(function() {
   getAllData()
-  getYestData()
 
 
   $('#breakdown').DataTable( {
@@ -52,20 +51,23 @@ $(document).ready(function() {
   var l = $('#breakdown_filter label');
   l.html(l.find('input'));
 
-  var themeSwitch = document.getElementById("themeSwitch");
+
+});
+
+var themeSwitch = document.getElementById("themeSwitch");
   initTheme();
   themeSwitch.addEventListener("change", resetTheme, function() {});
 
   function activateDarkMode() {
     document.documentElement.classList.add('mode-dark');
     localStorage.setItem("mode", "dark");
-    $("#themeSwitch").prop("checked", true);
+    document.querySelector('#themeSwitch').checked = true;
   }
 
   function activateLightMode() {
     document.documentElement.classList.remove('mode-dark');
     localStorage.setItem("mode", "light");
-    $("#themeSwitch").prop("checked", false);
+    document.querySelector('#themeSwitch').checked = false;
   }
 
   function initTheme() {
@@ -111,9 +113,6 @@ $(document).ready(function() {
       activateLightMode();
     }
   }
-
-
-});
 
 var covidStatus = {};
 
