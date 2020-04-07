@@ -1,230 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>COVID-19 Update (Live)</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
-    />
-    <link
-      rel="preload"
-      href="https://covidupdate.world/src/assets/fonts/Texta-Black.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="https://covidupdate.world/src/assets/fonts/Texta-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="${require(`./assets/image/favicon-32x32.png`)}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="${require(`./assets/image/favicon-16x16.png`)}"
-    />
-    <link
-      rel="mask-icon"
-      href="${require(`./assets/image/safari-pinned-tab.svg`)}"
-      color="#4299e1"b
-    />
-    <link rel="shortcut icon" href="${require(`./assets/image/favicon.ico`)}" />
-    <link
-      rel="shortcut icon"
-      type="image/svg+xml"
-      href="${require(`./assets/image/favicon.svg`)}"
-    />
-    <meta
-      name="msapplication-config"
-      content="${require(`./assets/image/browserconfig.xml`)}"
-    />
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta
-      name="thumbnail"
-      content="${require(`./assets/image/featured.jpg`)}"
-    />
-    <meta
-      name="description"
-      content="Track the current status of COVID-19 around the global"
-    />
-    <meta property="og:title" content="COVID-19 Update (Live)" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="${require(`./assets/image/featured.jpg`)}"
-    />
-    <meta
-      property="og:description"
-      content="Track the current status of COVID-19 around the global"
-    />
-    <meta
-      name="twitter:image"
-      content="${require(`./assets/image/featured.jpg`)}"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="COVID-19 Update (Live)" />
-    <meta
-      name="twitter:description"
-      content="Track the current status of COVID-19 around the global"
-    />
-    <style type="text/css">
-      @font-face {
-        font-family: "Texta Black";
-        src: url("${require(`./assets/fonts/Texta-Black.woff2`)}")
-            format("woff2"),
-          url("${require(`./assets/fonts/Texta-Black.woff`)}")
-            format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
+
+<head>
+  <title>COVID-19 Update (Live)</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+  <link rel="preload" href="https://covidupdate.world/src/assets/fonts/Texta-Black.woff2" as="font" type="font/woff2"
+    crossorigin />
+  <link rel="preload" href="https://covidupdate.world/src/assets/fonts/Texta-Regular.woff2" as="font" type="font/woff2"
+    crossorigin />
+  <link rel="icon" type="image/png" sizes="32x32" href="${require(`./assets/image/favicon-32x32.png`)}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="${require(`./assets/image/favicon-16x16.png`)}" />
+  <link rel="mask-icon" href="${require(`./assets/image/safari-pinned-tab.svg`)}" color="#4299e1" b />
+  <link rel="shortcut icon" href="${require(`./assets/image/favicon.ico`)}" />
+  <link rel="shortcut icon" type="image/svg+xml" href="${require(`./assets/image/favicon.svg`)}" />
+  <meta name="msapplication-config" content="${require(`./assets/image/browserconfig.xml`)}" />
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="thumbnail" content="${require(`./assets/image/featured.jpg`)}" />
+  <meta name="description" content="Track the current status of COVID-19 around the global" />
+  <meta property="og:title" content="COVID-19 Update (Live)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="${require(`./assets/image/featured.jpg`)}" />
+  <meta property="og:description" content="Track the current status of COVID-19 around the global" />
+  <meta name="twitter:image" content="${require(`./assets/image/featured.jpg`)}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="COVID-19 Update (Live)" />
+  <meta name="twitter:description" content="Track the current status of COVID-19 around the global" />
+  <style type="text/css">
+    @font-face {
+      font-family: "Texta Black";
+      src: url("${require(`./assets/fonts/Texta-Black.woff2`)}") format("woff2"),
+      url("${require(`./assets/fonts/Texta-Black.woff`)}") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Texta Regular";
+      src: url("${require(`./assets/fonts/Texta-Regular.woff2`)}") format("woff2"),
+      url("${require(`./assets/fonts/Texta-Regular.woff`)}") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+</head>
+
+<body class="pt-32 bg-white dark:bg-gray-900">
+  <main id="root" class="c-container home">
+    <header class="relative">
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="themeSwitch">
+          <input type="checkbox" id="themeSwitch" />
+          <div class="switcher"></div>
+          <div class="light-sun"></div>
+        </label>
+      </div>
+      <div class="titleAnimation relative">
+        <h1 class="text-4xl leading-none text-gray-900 dark:text-gray-100">COVID-19 Updates</h1>
+        <p id="updated" class="text-gray-700 dark:text-gray-400 text-sm leading-tight md:text-base"></p>
+      </div>
+    </header>
+    <section class="all-status mt-12">
+      <ul class="grid md:grid-cols-2 gap-10 grid-cols-1">
+        <li
+          class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+          <div>
+            <span class="text-base text-gray-700 dark:text-gray-400">Total Cases</span>
+            <h2 id="totalCases" class="text-orange-500 text-5xl leading-none mt-2 "></h2>
+          </div>
+          <div class="pt-5">
+            <div class="relative md:text-right text-left md:block inline-block">
+              <p id="casesPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+            </div>
+            <p id="casesNum"
+              class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0">
+            </p>
+          </div>
+        </li>
+        <li
+          class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+          <div>
+            <span class="text-base text-gray-700 dark:text-gray-400">Total Deaths</span>
+            <h2 id="totalDeaths" class="text-gray-700 dark:text-gray-500 text-5xl leading-none mt-2"></h2>
+          </div>
+          <div class="pt-5">
+            <div class="relative md:text-right text-left md:block inline-block">
+              <p id="deathPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+            </div>
+            <p id="deathNum"
+              class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0">
+            </p>
+          </div>
+        </li>
+        <li
+          class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+          <div>
+            <span class="text-base text-gray-700 dark:text-gray-400">Total Recoveries</span>
+            <h2 id="totalRecover" class="text-green-600 text-5xl leading-none mt-2 dark:text-green-500"></h2>
+          </div>
+          <div class="pt-5">
+            <div class="relative md:text-right text-left md:block inline-block">
+              <p id="recoverPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+            </div>
+            <p id="recoverNum"
+              class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0">
+            </p>
+          </div>
+        </li>
+        <li
+          class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
+          <div>
+            <span class="text-base text-gray-700 dark:text-gray-400">Active Cases</span>
+            <h2 id="totalActive" class="text-indigo-600 text-5xl leading-none mt-2 dark:text-indigo-500"></h2>
+          </div>
+          <div class="pt-5">
+            <div class="relative md:text-right text-left md:block inline-block">
+              <p id="activePer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
+            </div>
+            <p id="activeNum"
+              class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0">
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="breakdown-table mt-32">
+      <h2 class="text-3xl mb-8 dark:text-gray-100">Breakdown</h2>
+      <table id="breakdown" class="display">
+        <thead class="p-6">
+          <tr>
+            <th>Flag</th>
+            <th>Country</th>
+            <th>Cases</th>
+            <th>Deaths</th>
+            <th>Recovered</th>
+            <th>Active</th>
+            <th>Critical</th>
+            <th>Today Cases</th>
+            <th>Today Deaths</th>
+            <th>Cases per 1M</th>
+            <th>Deaths per 1m</th>
+          </tr>
+        </thead>
+      </table>
+    </section>
+    <section class="chart mt-32">
+      <h2 class="text-3xl mb-8 dark:text-gray-100">Graphs</h2>
+      <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800 chart-section" id="casesSection">
+        <h3 class="text-2xl mb-4 mt-2 dark:text-gray-100">Cases</h3>
+        <div class="tab mb-6">
+          <button class="tablinks font-display text-lg py-2 px-6 mr-8 rounded-lg defaultOpen" onclick="openTab(event, 'totalCasesAll', 'casesSection')">Total Cases</button>
+          <button class="tablinks font-display text-lg py-2 px-6 rounded-lg" onclick="openTab(event, 'dailyNewCases', 'casesSection')">Daily New Cases</button>
+        </div>
+        <div id="totalCasesAll" class="tabcontent">
+          <canvas id="caseChart"></canvas>
+        </div>
+        <div id="dailyNewCases" class="tabcontent">
+          <canvas id="caseDailyChart"></canvas>
+        </div>
+      </div>
+      <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800" id="deathSection">
+        <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Deaths</h3>
+        <div class="tab mb-6">
+          <button class="tablinks font-display text-lg py-2 px-6 mr-8 rounded-lg defaultOpen" onclick="openTab(event, 'totalDeathsAll', 'deathSection')">Total Deaths</button>
+          <button class="tablinks font-display text-lg py-2 px-6 rounded-lg" onclick="openTab(event, 'dailyNewDeaths', 'deathSection')">Daily New Deaths</button>
+        </div>
+        <div id="totalDeathsAll" class="tabcontent">
+          <canvas id="deathChart"></canvas>
+        </div>
+        <div id="dailyNewDeaths" class="tabcontent">
+          <canvas id="deathDailyChart"></canvas>
+        </div>
+      </div>
+      <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800" id="recoverSection">
+        <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Recoveries</h3>
+        <div class="tab mb-6">
+          <button class="tablinks font-display text-lg py-2 px-6 mr-8 rounded-lg defaultOpen" onclick="openTab(event, 'totalRecoversAll', 'recoverSection')">Total Recoveries</button>
+          <button class="tablinks font-display text-lg py-2 px-6 rounded-lg" onclick="openTab(event, 'dailyNewRecovers', 'recoverSection')">Daily New Recoveries</button>
+        </div>
+        <div id="totalRecoversAll" class="tabcontent">
+          <canvas id="recoverChart"></canvas>
+        </div>
+        <div id="dailyNewRecovers" class="tabcontent">
+          <canvas id="recoverDailyChart"></canvas>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <a href="https://ryanyao.design" target="_blank"
+        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500 mr-10">
+        Made by Ryan Yao
+      </a>
+      <a href="https://github.com/NovelCOVID/API" target="_blank"
+        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500">
+        Data Source
+      </a>
+
+    </footer>
+  </main>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145302459-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-145302459-2');
+  </script>
+  <script>
+    // Get the element with id="defaultOpen" and click on it
+
+    var buttons = document.getElementsByClassName('defaultOpen');
+
+    for(var i=0; i< buttons.length; i++){
+        buttons[i].click();
+    }
+
+    function openTab(evt, tabName, tabSection) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+      
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementById(tabSection).querySelectorAll(".tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
       }
 
-      @font-face {
-        font-family: "Texta Regular";
-        src: url("${require(`./assets/fonts/Texta-Regular.woff2`)}")
-            format("woff2"),
-          url("${require(`./assets/fonts/Texta-Regular.woff`)}")
-            format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementById(tabSection).querySelectorAll(".tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
-    </style>
-  </head>
-
-  <body class="pt-32 bg-white dark:bg-gray-900">
-    <main id="root" class="c-container home">
-      <header class="relative">
-        <div class="theme-switch-wrapper">
-          <label class="theme-switch" for="themeSwitch">
-            <input type="checkbox" id="themeSwitch" />
-            <div class="switcher"></div>
-            <div class="light-sun"></div>
-          </label>
-        </div>
-        <div class="titleAnimation relative">
-          <h1 class="text-4xl leading-none text-gray-900 dark:text-gray-100">COVID-19 Updates</h1>
-          <p id="updated" class="text-gray-700 dark:text-gray-400 text-sm leading-tight md:text-base"></p>
-        </div>
-      </header>
-      <section class="all-status mt-12">
-        <ul class="grid md:grid-cols-2 gap-10 grid-cols-1">
-          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
-            <div>
-              <span class="text-base text-gray-700 dark:text-gray-400">Total Cases</span>
-              <h2 id="totalCases" class="text-orange-500 text-5xl leading-none mt-2 "></h2>
-            </div>
-            <div class="pt-5">
-              <div class="relative md:text-right text-left md:block inline-block">
-                <p id="casesPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
-              </div>
-              <p id="casesNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
-            </div>
-          </li>
-          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
-            <div>
-              <span class="text-base text-gray-700 dark:text-gray-400">Total Deaths</span>
-              <h2 id="totalDeaths" class="text-gray-700 dark:text-gray-500 text-5xl leading-none mt-2"></h2>
-            </div> 
-            <div class="pt-5">
-              <div class="relative md:text-right text-left md:block inline-block">
-                <p id="deathPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
-              </div>
-              <p id="deathNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
-            </div>
-          </li>
-          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
-            <div>
-              <span class="text-base text-gray-700 dark:text-gray-400">Total Recoveries</span>
-              <h2 id="totalRecover" class="text-green-600 text-5xl leading-none mt-2 dark:text-green-500"></h2>
-            </div>
-            <div class="pt-5">
-              <div class="relative md:text-right text-left md:block inline-block">
-                <p id="recoverPer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
-              </div>
-              <p id="recoverNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
-            </div>
-          </li>
-          <li class="md:p-8 p-6 bg-white shadow-xl rounded-lg border-2 border-gray-200 flex justify-between dark:border-gray-700 dark:bg-gray-800 md:flex-row flex-col">
-            <div>
-              <span class="text-base text-gray-700 dark:text-gray-400">Active Cases</span>
-              <h2 id="totalActive" class="text-indigo-600 text-5xl leading-none mt-2 dark:text-indigo-500"></h2>
-            </div>
-            <div class="pt-5">
-              <div class="relative md:text-right text-left md:block inline-block">
-                <p id="activePer" class="text-xl leading-none md:mb-2 mb-0 dark:text-gray-100 inline-block"></p>
-              </div>
-              <p id="activeNum" class="text-xl text-gray-700 md:text-right text-left leading-none dark:text-gray-400 md:block inline-block md:mb-0"></p>
-            </div>
-          </li>
-        </ul>
-      </section>
-        <section class="breakdown-table mt-32">
-          <h2 class="text-3xl mb-8 dark:text-gray-100">Breakdown</h2>
-          <table id="breakdown" class="display">
-            <thead class="p-6">
-              <tr>
-                <th>Flag</th>
-                <th>Country</th>
-                <th>Cases</th>
-                <th>Deaths</th>
-                <th>Recovered</th>
-                <th>Active</th>
-                <th>Critical</th>
-                <th>Today Cases</th>
-                <th>Today Deaths</th>
-                <th>Cases per 1M</th>
-                <th>Deaths per 1m</th>
-              </tr>
-            </thead>
-          </table>
-        </section>
-        <section class="chart mt-32">
-          <h2 class="text-3xl mb-8 dark:text-gray-100">Graphs</h2>
-          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
-            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Cases</h3>
-            <canvas id="caseChart"></canvas>
-          </div>
-          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
-            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Deaths</h3>
-            <canvas id="deathChart"></canvas>
-          </div>
-          <div class="shadow-xl bg-gray-100 rounded-lg p-4 md:p-8 mb-10 dark:bg-gray-800">
-            <h3 class="text-2xl mb-2 mt-2 dark:text-gray-100">Total Recoveries</h3>
-            <canvas id="recoverChart"></canvas>
-          </div>
-        </section>
-      <footer>
-        <a href="https://ryanyao.design" target="_blank" class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500 mr-10">
-          Made by Ryan Yao
-        </a>
-        <a href="https://github.com/NovelCOVID/API" target="_blank" class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500">
-          Data Source
-        </a>
-        
-      </footer>
-    </main>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145302459-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-145302459-2');
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
     </script>
-  </body>
+</body>
+
 </html>

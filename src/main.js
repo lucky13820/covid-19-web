@@ -5,9 +5,9 @@ import jQuery from "jquery";
 import dt from 'datatables.net';
 import 'datatables.net-fixedcolumns-dt';
 
+
 $(document).ready(function() {
   getAllData()
-
 
   $('#breakdown').DataTable( {
     ajax: {
@@ -143,6 +143,35 @@ function getAllData() {
   request.send(covidStatus)
 }
 
+function diff(ary) {
+  var newA = [];
+  for (var i = 1; i < ary.length; i++)  newA.push(ary[i] - ary[i - 1])
+  newA.unshift(ary[0])
+  return newA;
+}
+
+function formatNum(num, name) {
+  if (num > 0){
+    document.getElementById(name).textContent = "from yesterday (+" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
+  }else{
+    document.getElementById(name).textContent = "from yesterday (" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
+  }
+}
+
+function formatPer(per, name) {
+  if (per > 0){
+    document.getElementById(name).textContent = per + "% increase"
+    document.getElementById(name).classList.add("increase");
+  }else if (per == 0){
+    document.getElementById(name).textContent = per + "% increase"
+    document.getElementById(name).classList.add("same");
+  }else{
+    per = per * -1
+    document.getElementById(name).textContent = per + "% decrease"
+    document.getElementById(name).classList.add("decrease");
+  }
+}
+
 function getYestData(covidStatus) {
   var request = new XMLHttpRequest()
   request.open('GET', 'https://corona.lmao.ninja/v2/historical/all', true)
@@ -200,90 +229,15 @@ function getYestData(covidStatus) {
       recoverPer = ((recoverNum * 100) / data.recovered[ Object.keys(data.recovered).pop() ] ).toFixed(1)
       activePer = ((activeNum * 100) / (data.cases[ Object.keys(data.cases).reverse().slice(1,2).pop() ] - data.recovered[ Object.keys(data.recovered).reverse().slice(1,2).pop() ]) ).toFixed(1)
 
-      if (casesNum > 0){
-        document.getElementById('casesNum').textContent = "from yesterday (+" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else if (casesNum == 0){
-        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else{
-        document.getElementById('casesNum').textContent = "from yesterday (" + casesNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }
+      formatNum(casesNum, Object.keys({casesNum})[0]);
+      formatNum(deathNum, Object.keys({deathNum})[0]);
+      formatNum(recoverNum, Object.keys({recoverNum})[0]);
+      formatNum(activeNum, Object.keys({activeNum})[0]);
 
-      if (deathNum > 0){
-        document.getElementById('deathNum').textContent = "from yesterday (+" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else if (deathNum == 0){
-        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else{
-        document.getElementById('deathNum').textContent = "from yesterday (" + deathNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }
-
-      if (recoverNum > 0){
-        document.getElementById('recoverNum').textContent = "from yesterday (+" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else if (recoverNum == 0){
-        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else{
-        document.getElementById('recoverNum').textContent = "from yesterday (" + recoverNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }
-
-      if (activeNum > 0){
-        document.getElementById('activeNum').textContent = "from yesterday (+" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else if (activeNum == 0){
-        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }else{
-        document.getElementById('activeNum').textContent = "from yesterday (" + activeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
-      }
-
-      if (casesPer > 0){
-        document.getElementById('casesPer').textContent = casesPer + "% increase"
-        document.getElementById("casesPer").classList.add("increase");
-      }else if (casesPer == 0){
-        document.getElementById('casesPer').textContent = casesPer + "% increase"
-        document.getElementById("casesPer").classList.add("same");
-      }else{
-        casesPer = casesPer * -1
-        document.getElementById('casesPer').textContent = casesPer + "% decrease"
-        document.getElementById("casesPer").classList.add("decrease");
-      }
-
-      if (deathPer > 0){
-        document.getElementById('deathPer').textContent = deathPer + "% increase"
-        document.getElementById("deathPer").classList.add("increase");
-      }else if (deathPer == 0){
-        document.getElementById('deathPer').textContent = deathPer + "% increase"
-        document.getElementById("deathPer").classList.add("same");
-      }else{
-        deathPer = deathPer * -1
-        document.getElementById('deathPer').textContent = deathPer + "% decrease"
-        document.getElementById("deathPer").classList.add("decrease");
-      }
-
-      if (recoverPer > 0){
-        document.getElementById('recoverPer').textContent = recoverPer + "% increase"
-        document.getElementById("recoverPer").classList.add("increaseGreen");
-      }else if (recoverPer == 0){
-        document.getElementById('recoverPer').textContent = recoverPer + "% increase"
-        document.getElementById("recoverPer").classList.add("same");
-      }else{
-        recoverPer = recoverPer * -1
-        document.getElementById('recoverPer').textContent = recoverPer + "% decrease"
-        document.getElementById("recoverPer").classList.add("decrease");
-      }
-
-      if (activePer > 0){
-        document.getElementById('activePer').textContent = activePer + "% increase"
-        document.getElementById("activePer").classList.add("increase");
-      }else if (activePer == 0){
-        document.getElementById('activePer').textContent = activePer + "% increase"
-        document.getElementById("activePer").classList.add("same");
-      }else{
-        activePer = activePer * -1
-        document.getElementById('activePer').textContent = activePer + "% decrease"
-        document.getElementById("activePer").classList.add("decrease");
-      }
-    
-      
-      
-      
-      
+      formatPer(casesPer, Object.keys({casesPer})[0]);
+      formatPer(deathPer, Object.keys({deathPer})[0]);
+      formatPer(recoverPer, Object.keys({recoverPer})[0]);
+      formatPer(activePer, Object.keys({activePer})[0]);
      
     } else {
       console.log('error')
@@ -297,12 +251,19 @@ function createChart(covidStatus){
   var ctx = document.getElementById('caseChart').getContext('2d');
   var dtx = document.getElementById('deathChart').getContext('2d');
   var rtx = document.getElementById('recoverChart').getContext('2d');
+  var cdtx = document.getElementById('caseDailyChart').getContext('2d');
+  var ddtx = document.getElementById('deathDailyChart').getContext('2d');
+  var rdtx = document.getElementById('recoverDailyChart').getContext('2d');
   let casesData = covidStatus.casesData.toString().split(',').map(Number);
   let casesLabel = covidStatus.casesLabel;
   let deathData = covidStatus.deathData.toString().split(',').map(Number);
   let deathLabel = covidStatus.deathLabel;
   let recoverData = covidStatus.recoverData.toString().split(',').map(Number);
   let recoverLabel = covidStatus.recoverLabel;
+  let casesDailyData = diff(covidStatus.casesData).toString().split(',').map(Number);
+  let deathDailyData = diff(covidStatus.deathData).toString().split(',').map(Number);
+  let recoverDailyData = diff(covidStatus.recoverData).toString().split(',').map(Number);
+
   var caseChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -310,21 +271,12 @@ function createChart(covidStatus){
           datasets: [{
               label: '',
               data: casesData,
-              backgroundColor: [
-                  'rgba(237, 137, 54, 0.16)',
-              ],
-              borderColor: [
-                  'rgba(237, 137, 54, 1)',
-              ],
+              backgroundColor: 'rgba(237, 137, 54, 0.2)',
+              borderColor: 'rgba(237, 137, 54, 1)',
               borderWidth: 3,
               pointStyle: "circle",
-              pointRadius: 4,
-              pointBackgroundColor: [
-                'rgba(237, 137, 54, 0.16)',
-              ],
-              pointBorderColor:[
-                'rgba(255, 255, 255, 1)',
-              ],
+              pointRadius: 3,
+              pointBackgroundColor: 'rgba(237, 137, 54, 0.6)',
               pointBorderWidth: 1,
               borderJoinStyle: 'round',
               fill: 'origin'
@@ -362,8 +314,68 @@ function createChart(covidStatus){
           legend: {
             display: false,
           },
+          animation: {
+            duration: 0 // general animation time
+          },
+          hover: {
+              animationDuration: 0 // duration of animations when hovering an item
+          },
+          responsiveAnimationDuration: 0 // animation duration after a resize
       }
   });
+  var caseDailyChart = new Chart(cdtx, {
+    type: 'bar',
+    data: {
+        labels: casesLabel,
+        datasets: [{
+            label: '',
+            data: casesDailyData,
+            backgroundColor: 'rgba(237, 137, 54, 0.5)',
+            borderColor: 'rgba(237, 137, 54, 1)',
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+              gridLines: {
+                drawBorder: false,
+                lineWidth: 0,
+              },
+              type: 'time',
+              time: {
+                displayFormats: {
+                  day: 'D MMM'
+                }
+              } 
+            }],
+            yAxes: [{
+              gridLines: {
+                drawBorder: false
+              },
+              ticks: {
+                beginAtZero: true,
+                callback: function(value, index, values) {
+                    if (value >= 0 && value < 1000) return value;
+                    if (value >= 1000 && value < 1000000) return (value / 1000) + "k";
+                    if (value >= 1000000 && value < 1000000000) return (value / 1000000) + "m";
+                    return value;
+                }
+              }
+            }]
+        },
+        legend: {
+          display: false,
+        },
+        animation: {
+          duration: 0 // general animation time
+        },
+        hover: {
+            animationDuration: 0 // duration of animations when hovering an item
+        },
+        responsiveAnimationDuration: 0 // animation duration after a resize
+    }
+});
   var deathChart = new Chart(dtx, {
     type: 'line',
     data: {
@@ -371,21 +383,13 @@ function createChart(covidStatus){
         datasets: [{
             label: 'Total Deaths',
             data: deathData,
-            backgroundColor: [
-                'rgba(120, 120, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(120, 120, 132, 1)',
-            ],
+            backgroundColor: 'rgba(120, 120, 132, 0.2)',
+            borderColor: 'rgba(120, 120, 132, 1)',
             borderWidth: 3,
             pointStyle: "circle",
             pointRadius: 4,
-            pointBackgroundColor: [
-              'rgba(237, 137, 54, 0.16)',
-            ],
-            pointBorderColor:[
-              'rgba(255, 255, 255, 1)',
-            ],
+            pointBackgroundColor: 'rgba(120, 120, 132, 0.6)',
+            pointBorderColor:'rgba(120, 120, 132, 1)',
             pointBorderWidth: 1,
             borderJoinStyle: 'round',
             fill: 'origin'
@@ -424,6 +428,66 @@ function createChart(covidStatus){
       legend: {
         display: false,
       },
+      animation: {
+        duration: 0 // general animation time
+      },
+      hover: {
+          animationDuration: 0 // duration of animations when hovering an item
+      },
+      responsiveAnimationDuration: 0 // animation duration after a resize
+  }
+});
+var deathDailyChart = new Chart(ddtx, {
+  type: 'bar',
+  data: {
+      labels: casesLabel,
+      datasets: [{
+          label: '',
+          data: deathDailyData,
+          backgroundColor: 'rgba(120, 120, 132, 0.5)',
+          borderColor: 'rgba(120, 120, 132, 1)',
+          borderWidth: 1,
+      }]
+  },
+  options: {
+      scales: {
+          xAxes: [{
+            gridLines: {
+              drawBorder: false,
+              lineWidth: 0,
+            },
+            type: 'time',
+            time: {
+              displayFormats: {
+                day: 'D MMM'
+              }
+            } 
+          }],
+          yAxes: [{
+            gridLines: {
+              drawBorder: false
+            },
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                  if (value >= 0 && value < 1000) return value;
+                  if (value >= 1000 && value < 1000000) return (value / 1000) + "k";
+                  if (value >= 1000000 && value < 1000000000) return (value / 1000000) + "m";
+                  return value;
+              }
+            }
+          }]
+      },
+      legend: {
+        display: false,
+      },
+      animation: {
+        duration: 0 // general animation time
+      },
+      hover: {
+          animationDuration: 0 // duration of animations when hovering an item
+      },
+      responsiveAnimationDuration: 0 // animation duration after a resize
   }
 });
 var recoverChart = new Chart(rtx, {
@@ -433,21 +497,13 @@ var recoverChart = new Chart(rtx, {
       datasets: [{
           label: 'Total Recovered',
           data: recoverData,
-          backgroundColor: [
-              'rgba(56, 161, 105, 0.2)',
-          ],
-          borderColor: [
-              'rgba(56, 161, 105, 1)',
-          ],
+          backgroundColor: 'rgba(56, 161, 105, 0.2)',
+          borderColor: 'rgba(56, 161, 105, 1)',
           borderWidth: 3,
           pointStyle: "circle",
           pointRadius: 4,
-          pointBackgroundColor: [
-            'rgba(556, 161, 105, 0.16)',
-          ],
-          pointBorderColor:[
-            'rgba(56, 161, 105, 1)',
-          ],
+          pointBackgroundColor: 'rgba(56, 161, 105, 0.6)',
+          pointBorderColor: 'rgba(56, 161, 105, 1)',
           pointBorderWidth: 1,
           borderJoinStyle: 'round',
           fill: 'origin'
@@ -485,8 +541,71 @@ var recoverChart = new Chart(rtx, {
     legend: {
       display: false,
     },
+    animation: {
+      duration: 0 // general animation time
+    },
+    hover: {
+        animationDuration: 0 // duration of animations when hovering an item
+    },
+    responsiveAnimationDuration: 0 // animation duration after a resize
 }
 });
+var recoverDailyChart = new Chart(rdtx, {
+  type: 'bar',
+  data: {
+      labels: casesLabel,
+      datasets: [{
+          label: '',
+          data: recoverDailyData,
+          backgroundColor: 'rgba(56, 161, 105, 0.5)',
+          borderColor: 'rgba(56, 161, 105, 1)',
+          borderWidth: 1,
+      }]
+  },
+  options: {
+      scales: {
+          xAxes: [{
+            gridLines: {
+              drawBorder: false,
+              lineWidth: 0,
+            },
+            type: 'time',
+            time: {
+              displayFormats: {
+                day: 'D MMM'
+              }
+            } 
+          }],
+          yAxes: [{
+            gridLines: {
+              drawBorder: false
+            },
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                  if (value >= 0 && value < 1000) return value;
+                  if (value >= 1000 && value < 1000000) return (value / 1000) + "k";
+                  if (value >= 1000000 && value < 1000000000) return (value / 1000000) + "m";
+                  return value;
+              }
+            }
+          }]
+      },
+      legend: {
+        display: false,
+      },
+      animation: {
+        duration: 0 // general animation time
+      },
+      hover: {
+          animationDuration: 0 // duration of animations when hovering an item
+      },
+      responsiveAnimationDuration: 0 // animation duration after a resize
+  }
+});
+
+
+
 }
 
 
