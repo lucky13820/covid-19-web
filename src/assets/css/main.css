@@ -161,6 +161,10 @@ blockquote {
       @apply text-gray-300;
     }
   }
+
+  .tablinks.active{
+    @apply bg-gray-700;
+  }
 }
 
 .increase, .increaseGreen, .decrease, .same{
