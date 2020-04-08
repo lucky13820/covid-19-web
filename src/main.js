@@ -1,8 +1,7 @@
 import "./assets/css/main.css";
 import $ from "jquery";
 import Chart from 'chart.js';
-import jQuery from "jquery";
-import dt from 'datatables.net';
+import 'datatables.net';
 import 'datatables.net-fixedcolumns-dt';
 
 
@@ -40,17 +39,12 @@ $(document).ready(function() {
     "order": [2, 'desc'],
     language: {
       searchPlaceholder: "Search for countries",
-      thousands: ","
     },
     fixedColumns: true,
     fixedColumns: {
       leftColumns: 2
     },
   } );
-
-  var l = $('#breakdown_filter label');
-  l.html(l.find('input'));
-
 
 });
 
