@@ -144,6 +144,12 @@ function diff(ary) {
   return newA;
 }
 
+function active(ary1, ary2, ary3) {
+  var newA = [];
+  for (var i = 1; i < ary1.length; i++)  newA.push(ary1[i] - ary2[i] - ary3[i])
+  return newA;
+}
+
 function formatNum(num, name) {
   if (num > 0){
     document.getElementById(name).textContent = "from yesterday (+" + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ")"
@@ -217,7 +223,7 @@ function getYestData(covidStatus) {
       casesNum = covidStatus.totalCases - data.cases[ Object.keys(data.cases).pop() ]
       deathNum = covidStatus.totalDeaths - data.deaths[ Object.keys(data.deaths).pop() ]
       recoverNum = covidStatus.totalRecover - data.recovered[ Object.keys(data.recovered).pop() ]
-      activeNum = casesNum - recoverNum
+      activeNum = casesNum - recoverNum - deathNum
       casesPer = ((casesNum * 100) / data.cases[ Object.keys(data.cases).pop() ] ).toFixed(1)
       deathPer = ((deathNum * 100) / data.deaths[ Object.keys(data.deaths).pop() ] ).toFixed(1)
       recoverPer = ((recoverNum * 100) / data.recovered[ Object.keys(data.recovered).pop() ] ).toFixed(1)
@@ -245,9 +251,11 @@ function createChart(covidStatus){
   var ctx = document.getElementById('caseChart').getContext('2d');
   var dtx = document.getElementById('deathChart').getContext('2d');
   var rtx = document.getElementById('recoverChart').getContext('2d');
+  var atx = document.getElementById('activeChart').getContext('2d');
   var cdtx = document.getElementById('caseDailyChart').getContext('2d');
   var ddtx = document.getElementById('deathDailyChart').getContext('2d');
   var rdtx = document.getElementById('recoverDailyChart').getContext('2d');
+  var adtx = document.getElementById('activeDailyChart').getContext('2d');
   let casesData = covidStatus.casesData.toString().split(',').map(Number);
   let casesLabel = covidStatus.casesLabel;
   let deathData = covidStatus.deathData.toString().split(',').map(Number);
@@ -257,6 +265,10 @@ function createChart(covidStatus){
   let casesDailyData = diff(covidStatus.casesData).toString().split(',').map(Number);
   let deathDailyData = diff(covidStatus.deathData).toString().split(',').map(Number);
   let recoverDailyData = diff(covidStatus.recoverData).toString().split(',').map(Number);
+  let activeData = active(casesData, deathData, recoverData)
+  let activeDailyData = diff(activeData).toString().split(',').map(Number);
+
+  console.log(casesData);
 
   var caseChart = new Chart(ctx, {
       type: 'line',
@@ -381,7 +393,7 @@ function createChart(covidStatus){
             borderColor: 'rgba(120, 120, 132, 1)',
             borderWidth: 3,
             pointStyle: "circle",
-            pointRadius: 4,
+            pointRadius: 3,
             pointBackgroundColor: 'rgba(120, 120, 132, 0.6)',
             pointBorderColor:'rgba(120, 120, 132, 1)',
             pointBorderWidth: 1,
@@ -495,7 +507,7 @@ var recoverChart = new Chart(rtx, {
           borderColor: 'rgba(56, 161, 105, 1)',
           borderWidth: 3,
           pointStyle: "circle",
-          pointRadius: 4,
+          pointRadius: 3,
           pointBackgroundColor: 'rgba(56, 161, 105, 0.6)',
           pointBorderColor: 'rgba(56, 161, 105, 1)',
           pointBorderWidth: 1,
@@ -553,6 +565,121 @@ var recoverDailyChart = new Chart(rdtx, {
           data: recoverDailyData,
           backgroundColor: 'rgba(56, 161, 105, 0.5)',
           borderColor: 'rgba(56, 161, 105, 1)',
+          borderWidth: 1,
+      }]
+  },
+  options: {
+      scales: {
+          xAxes: [{
+            gridLines: {
+              drawBorder: false,
+              lineWidth: 0,
+            },
+            type: 'time',
+            time: {
+              displayFormats: {
+                day: 'D MMM'
+              }
+            } 
+          }],
+          yAxes: [{
+            gridLines: {
+              drawBorder: false
+            },
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                  if (value >= 0 && value < 1000) return value;
+                  if (value >= 1000 && value < 1000000) return (value / 1000) + "k";
+                  if (value >= 1000000 && value < 1000000000) return (value / 1000000) + "m";
+                  return value;
+              }
+            }
+          }]
+      },
+      legend: {
+        display: false,
+      },
+      animation: {
+        duration: 0 // general animation time
+      },
+      hover: {
+          animationDuration: 0 // duration of animations when hovering an item
+      },
+      responsiveAnimationDuration: 0 // animation duration after a resize
+  }
+});
+
+var activeChart = new Chart(atx, {
+  type: 'line',
+  data: {
+      labels: casesLabel,
+      datasets: [{
+          label: 'Total Active',
+          data: activeData,
+          backgroundColor: 'rgba(90, 103, 216, 0.2)',
+          borderColor: 'rgba(90, 103, 216, 1)',
+          borderWidth: 3,
+          pointStyle: "circle",
+          pointRadius: 3,
+          pointBackgroundColor: 'rgba(90, 103, 216, 0.6)',
+          pointBorderColor: 'rgba(90, 103, 216, 1)',
+          pointBorderWidth: 1,
+          borderJoinStyle: 'round',
+          fill: 'origin'
+      }]
+  },
+  options: {
+    scales: {
+        xAxes: [{
+          gridLines: {
+            drawBorder: false,
+            lineWidth: 0,
+          },
+          type: 'time',
+                time: {
+                  displayFormats: {
+                    day: 'D MMM'
+                  }
+                },
+        }],
+        yAxes: [{
+          gridLines: {
+            drawBorder: false
+          },
+          ticks: {
+            beginAtZero: true,
+            callback: function(value, index, values) {
+                if (value >= 0 && value < 1000) return value;
+                if (value >= 1000 && value < 1000000) return (value / 1000) + "k";
+                if (value >= 1000000 && value < 1000000000) return (value / 1000000) + "m";
+                return value;
+            }
+          }
+        }]
+    },
+    legend: {
+      display: false,
+    },
+    animation: {
+      duration: 0 // general animation time
+    },
+    hover: {
+        animationDuration: 0 // duration of animations when hovering an item
+    },
+    responsiveAnimationDuration: 0 // animation duration after a resize
+}
+});
+
+var activeDailyChart = new Chart(adtx, {
+  type: 'bar',
+  data: {
+      labels: casesLabel,
+      datasets: [{
+          label: '',
+          data: activeDailyData,
+          backgroundColor: 'rgba(90, 103, 216, 0.5)',
+          borderColor: 'rgba(90, 103, 216, 1)',
           borderWidth: 1,
       }]
   },
