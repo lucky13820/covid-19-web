@@ -164,6 +164,9 @@ function formatPer(per, name) {
   if (per > 0){
     document.getElementById(name).textContent = per + "% increase"
     document.getElementById(name).classList.add("increase");
+    if (name == "recoverPer"){
+      document.getElementById(name).classList.add("increaseGreen");
+    }
   }else if (per == 0){
     document.getElementById(name).textContent = per + "% increase"
     document.getElementById(name).classList.add("same");
