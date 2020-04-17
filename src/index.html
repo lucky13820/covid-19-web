@@ -52,18 +52,22 @@
 </head>
 
 <body class="pt-32 bg-white dark:bg-gray-900">
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="themeSwitch">
+      <input type="checkbox" id="themeSwitch" />
+      <div class="switcher"></div>
+      <div class="light-sun"></div>
+    </label>
+  </div>
   <main id="root" class="c-container home">
     <header class="relative">
-      <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="themeSwitch">
-          <input type="checkbox" id="themeSwitch" />
-          <div class="switcher"></div>
-          <div class="light-sun"></div>
-        </label>
-      </div>
       <div class="titleAnimation relative">
         <h1 class="text-4xl leading-none text-gray-900 dark:text-gray-100">COVID-19 Updates</h1>
         <p id="updated" class="text-gray-700 dark:text-gray-400 text-sm leading-tight md:text-base"></p>
+      </div>
+      <div class="ph--button absolute top-0 right-0">
+        <a href="https://www.producthunt.com/posts/covid-19-update?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-covid-19-update" target="_blank" class="ph--button-light"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=193313&theme=light" alt="COVID-19 Update - Live tracker to get updates on global COVID-19 status | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
+        <a href="https://www.producthunt.com/posts/covid-19-update?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-covid-19-update" target="_blank" class="ph--button-dark"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=193313&theme=dark" alt="COVID-19 Update - Live tracker to get updates on global COVID-19 status | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
       </div>
     </header>
     <section class="all-status mt-12">

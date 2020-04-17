@@ -33,8 +33,8 @@ blockquote {
 
 .theme-switch-wrapper {
 	position: absolute;
-	right: 40px;
-	top: -80px;
+	right: 80px;
+	top: 32px;
 	z-index: 9999;
 }
 
@@ -85,6 +85,14 @@ blockquote {
   transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
 }
+
+.ph--button-dark{
+  display: none;
+}
+
+.ph--button-light{
+    display: block ;
+  }
 
 .mode-dark {
   .switcher:before {
@@ -165,6 +173,13 @@ blockquote {
 
   .tablinks.active{
     @apply bg-gray-700;
+  }
+
+  .ph--button-dark{
+    display: block;
+  }
+  .ph--button-light{
+    display: none;
   }
 }
 
