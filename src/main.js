@@ -10,7 +10,7 @@ $(document).ready(function () {
   // Initiate breakdown table
   $('#breakdown').DataTable({
     ajax: {
-      url: 'https://corona.lmao.ninja/countries',
+      url: 'https://corona.lmao.ninja/v2/countries',
       dataSrc: ''
     },
     columnDefs: [{
@@ -110,14 +110,13 @@ function resetTheme (e) {
   }
 }
 
-
 // Get data for global status
 var covidStatus = {}
 
 function getAllData () {
   var request = new XMLHttpRequest()
 
-  request.open('GET', 'https://corona.lmao.ninja/all', true)
+  request.open('GET', 'https://corona.lmao.ninja/v2/all', true)
   request.onload = function () {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
@@ -141,7 +140,7 @@ function getAllData () {
   request.send(covidStatus)
 }
 
-//Calculation for history chart
+// Calculation for history chart
 function diff (ary) {
   var newA = []
   for (var i = 1; i < ary.length; i++) newA.push(ary[i] - ary[i - 1])
@@ -149,14 +148,14 @@ function diff (ary) {
   return newA
 }
 
-//Calculation for active cases chart
+// Calculation for active cases chart
 function active (ary1, ary2, ary3) {
   var newA = []
   for (var i = 1; i < ary1.length; i++) newA.push(ary1[i] - ary2[i] - ary3[i])
   return newA
 }
 
-//Format update numbers then put them in DOM
+// Format update numbers then put them in DOM
 function formatNum (num, name) {
   if (num > 0) {
     document.getElementById(name).textContent = 'from yesterday (+' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ')'
@@ -165,7 +164,7 @@ function formatNum (num, name) {
   }
 }
 
-//Format update percentage then put them in DOM
+// Format update percentage then put them in DOM
 function formatPer (per, name) {
   if (per > 0) {
     document.getElementById(name).textContent = per + '% increase'
@@ -183,16 +182,15 @@ function formatPer (per, name) {
   }
 }
 
-//Get historocal data for global status 
+// Get historocal data for global status
 function getYestData (covidStatus) {
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://corona.lmao.ninja/v2/historical/all', true)
+  request.open('GET', 'https://corona.lmao.ninja/v2/historical/all?lastdays=all', true)
   request.onload = function () {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
 
     if (request.status >= 200 && request.status < 400) {
-
       // Getting data for cases, deaths, recovers, then save them as arrays, used for chart data
       covidStatus.casesData = []
       covidStatus.deathData = []
@@ -216,7 +214,7 @@ function getYestData (covidStatus) {
         return (covidStatus.recoverData)
       })
 
-      //Get each date for cases, deaths, recovers, then save them as arrays, used for chart labels
+      // Get each date for cases, deaths, recovers, then save them as arrays, used for chart labels
       covidStatus.deathLabel = []
       for (var k in data.cases) covidStatus.deathLabel.push(k)
 
@@ -225,7 +223,6 @@ function getYestData (covidStatus) {
 
       covidStatus.recoverLabel = []
       for (var k in data.cases) covidStatus.recoverLabel.push(k)
-
 
       // Calculate update numbers and perfectage for total cases, total deaths, total recoveries, and total actives
       var casesNum = ''
@@ -245,7 +242,7 @@ function getYestData (covidStatus) {
       recoverPer = ((recoverNum * 100) / data.recovered[Object.keys(data.recovered).pop()]).toFixed(1)
       activePer = ((activeNum * 100) / (data.cases[Object.keys(data.cases).reverse().slice(1, 2).pop()] - data.recovered[Object.keys(data.recovered).reverse().slice(1, 2).pop()])).toFixed(1)
 
-      //Format update numbers and percentage
+      // Format update numbers and percentage
       formatNum(casesNum, Object.keys({ casesNum })[0])
       formatNum(deathNum, Object.keys({ deathNum })[0])
       formatNum(recoverNum, Object.keys({ recoverNum })[0])
@@ -263,7 +260,7 @@ function getYestData (covidStatus) {
   request.send(covidStatus)
 }
 
-//Initiate charts
+// Initiate charts
 function createChart (covidStatus) {
   var ctx = document.getElementById('caseChart').getContext('2d')
   var dtx = document.getElementById('deathChart').getContext('2d')
@@ -274,7 +271,7 @@ function createChart (covidStatus) {
   var rdtx = document.getElementById('recoverDailyChart').getContext('2d')
   var adtx = document.getElementById('activeDailyChart').getContext('2d')
 
-  //Formate data to be used for chart data
+  // Formate data to be used for chart data
   const casesData = covidStatus.casesData.toString().split(',').map(Number)
   const deathData = covidStatus.deathData.toString().split(',').map(Number)
   const recoverData = covidStatus.recoverData.toString().split(',').map(Number)
@@ -291,7 +288,7 @@ function createChart (covidStatus) {
 
   console.log(casesData)
 
-  //Total cases chart
+  // Total cases chart
   var caseChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -352,7 +349,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Daily new cases chart
+  // Daily new cases chart
   var caseDailyChart = new Chart(cdtx, {
     type: 'bar',
     data: {
@@ -407,7 +404,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Total deaths chart
+  // Total deaths chart
   var deathChart = new Chart(dtx, {
     type: 'line',
     data: {
@@ -470,7 +467,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Daily deaths chart
+  // Daily deaths chart
   var deathDailyChart = new Chart(ddtx, {
     type: 'bar',
     data: {
@@ -525,7 +522,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Total recover chart
+  // Total recover chart
   var recoverChart = new Chart(rtx, {
     type: 'line',
     data: {
@@ -587,7 +584,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Daily recover charts
+  // Daily recover charts
   var recoverDailyChart = new Chart(rdtx, {
     type: 'bar',
     data: {
@@ -704,7 +701,7 @@ function createChart (covidStatus) {
     }
   })
 
-  //Daily active chart
+  // Daily active chart
   var activeDailyChart = new Chart(adtx, {
     type: 'bar',
     data: {
