@@ -47,6 +47,7 @@ blockquote {
 }
 
 .switcher {
+  transform: scale(0.84);
 	bottom: 0;
 	left: 0;
 	position: absolute;
@@ -443,6 +444,9 @@ thead th{
   .theme-switch-wrapper{
     right: 80px;
 	  top: 32px;
+  }
+  .switcher{
+    transform: scale(1);
   }
 }
 /*! purgecss end ignore */
