@@ -10,7 +10,7 @@ $(document).ready(function () {
   // Initiate breakdown table
   $('#breakdown').DataTable({
     ajax: {
-      url: 'https://corona.lmao.ninja/v2/countries',
+      url: 'https://disease.sh/v2/countries',
       dataSrc: ''
     },
     columnDefs: [{
@@ -116,7 +116,8 @@ var covidStatus = {}
 function getAllData () {
   var request = new XMLHttpRequest()
 
-  request.open('GET', 'https://corona.lmao.ninja/v2/all', true)
+  request.open('GET', 'https://disease.sh/v2/all', true)
+  request.setRequestHeader('Access-Control-Allow-Origin', 'https://disease.sh')
   request.onload = function () {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
@@ -185,7 +186,8 @@ function formatPer (per, name) {
 // Get historocal data for global status
 function getYestData (covidStatus) {
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://corona.lmao.ninja/v2/historical/all?lastdays=all', true)
+  request.open('GET', 'https://disease.sh/v2/historical/all?lastdays=all', true)
+  request.setRequestHeader('Access-Control-Allow-Origin', 'https://disease.sh')
   request.onload = function () {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
