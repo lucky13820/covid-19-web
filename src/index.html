@@ -65,10 +65,6 @@
         <h1 class="text-4xl leading-none text-gray-900 dark:text-gray-100">COVID-19 Updates</h1>
         <p id="updated" class="text-gray-700 dark:text-gray-400 text-sm leading-tight md:text-base"></p>
       </div>
-      <div class="ph--button relative md:absolute top-0 right-0 mt-4">
-        <a href="https://www.producthunt.com/posts/covid-19-update?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-covid-19-update" target="_blank" class="ph--button-light"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=193313&theme=light" alt="COVID-19 Update - Live tracker to get updates on global COVID-19 status | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-        <a href="https://www.producthunt.com/posts/covid-19-update?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-covid-19-update" target="_blank" class="ph--button-dark"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=193313&theme=dark" alt="COVID-19 Update - Live tracker to get updates on global COVID-19 status | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
-      </div>
     </header>
     <section class="all-status mt-12">
       <ul class="grid md:grid-cols-2 gap-10 grid-cols-1">
@@ -213,25 +209,21 @@
     </section>
     <footer>
       <a href="https://ryanyao.design" target="_blank"
-        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500 mr-10">
+        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500 mr-10 underline">
         Made by Ryan Yao
       </a>
       <a href="https://github.com/NovelCOVID/API" target="_blank"
-        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500">
+        class="text-lg text-gray-700 text-left w-full py-12 m-0 hover:text-gray-500 underline ">
         Data Source
       </a>
+      <p class="text-lg text-gray-700 text-left w-full m-0 leading-none mt-8">I collect totally anonymous basic analytics using Simple Analytics. View live analytics at <br> <a href="https://simpleanalytics.com/covid19update.world" target="_blank" class="hover:text-gray-500 underline">
+        simpleanalytics.com/covid19update.world
+      </a></p>
 
     </footer>
   </main>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145302459-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-145302459-2', { 'anonymize_ip': true });
-  </script>
+  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script> 
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""></noscript>
   <script>
     // Get the element with id="defaultOpen" and click on it
 

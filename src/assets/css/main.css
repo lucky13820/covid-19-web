@@ -167,7 +167,7 @@ blockquote {
   }
 
   footer{
-    a{
+    a, p{
       @apply text-gray-300;
     }
   }
